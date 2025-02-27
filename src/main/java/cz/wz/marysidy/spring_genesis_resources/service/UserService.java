@@ -34,18 +34,19 @@ public class UserService {
     private final PositionRepository positionRepository;
     private final Set<String> availablePersonIDs;
 
-    @Value("${app.personid.filepath}")
-    private String personIdFilePath;
+    private final String personIdFilePath;
 
-    @Autowired  // так как 1 конструктор, могла бы и не писать
-    public UserService(UserRepository userRepository, PositionRepository positionRepository, Set<String> availablePersonIDs) {
+    @Autowired
+    public UserService(UserRepository userRepository, PositionRepository positionRepository,
+                       @Value("${app.personid.filepath}") String personIdFilePath) {
         this.userRepository = userRepository;
         this.positionRepository = positionRepository;
-        this.availablePersonIDs = availablePersonIDs;
+        this.personIdFilePath = personIdFilePath;
+        this.availablePersonIDs = new HashSet<>();
     }
 
     @PostConstruct
-    public void initPersonIDs() {
+    public void initPersonIDs() throws FileNotFoundException, AccessDeniedException {
         try {
             Path filePath = Paths.get(personIdFilePath);
             if (!Files.exists(filePath)) {
@@ -66,15 +67,23 @@ public class UserService {
                     .filter(line -> !line.trim().isEmpty())
                     .collect(Collectors.toSet()));
 
-            System.out.println("Loaded " + availablePersonIDs.size() + " personIDs from file: " + personIdFilePath + " " + availablePersonIDs);// для отладки
+//            System.out.println("Loaded " + availablePersonIDs.size() + " personIDs from file: " + personIdFilePath + " " + availablePersonIDs);
+
+        } catch (FileNotFoundException e) {
+            throw e;
+        } catch (AccessDeniedException e) {
+            throw e;
         } catch (IOException e) {
             throw new RuntimeException("Failed to load personIDs from file: " + personIdFilePath, e);
         }
     }
 
+    public Set<String> getAvailablePersonIDs() {
+        return availablePersonIDs;
+    }
+
     public DetailedUserDto createUser(CreateUserDto createUserDto) {
         String personID = createUserDto.getPersonId();
-        // Проверяем наличие personID в Set и отсутствие в БД
         if (!availablePersonIDs.contains(personID)) {
             throw new ValidationException("personID is missing in the available values.");
         }
@@ -83,9 +92,11 @@ public class UserService {
             throw new ValidationException("personID has already been used.");
         }
 
-        User user = new User(createUserDto.getName(), createUserDto.getSurname(), createUserDto.getDateOfBirth(), personID, createUserDto.getPositions());
+        User user = new User(createUserDto.getName(), createUserDto.getSurname(), createUserDto.getDateOfBirth(),
+                personID, createUserDto.getPositions());
         userRepository.save(user);
-        return new DetailedUserDto(user.getId(), user.getName(), user.getSurname(),user.getBirthDate(), user.getPersonId(), user.getUuid());
+        return new DetailedUserDto(user.getId(), user.getName(), user.getSurname(),user.getBirthDate(),
+                user.getPersonId(), user.getUuid());
     }
 
     public ShortUserDto getShortUserById(Long id) {
@@ -209,7 +220,8 @@ public class UserService {
                             + userId + " - " + user.getName() + " " + user.getSurname() +
                             ". Position/s " + nonExistPositions + " does/do not exist, cannot be added.");
         }
-        return new SuperDetailedUserDto(user.getId(), user.getName(), user.getSurname(), user.getBirthDate(), user.getPersonId(), user.getUuid(), user.getPositions(), null);
+        return new SuperDetailedUserDto(user.getId(), user.getName(), user.getSurname(), user.getBirthDate(),
+                user.getPersonId(), user.getUuid(), user.getPositions(), null);
     }
 
     public SuperDetailedUserDto removePositionsFromUser(Long userId, List<Long> positionIdsToRemove) {
