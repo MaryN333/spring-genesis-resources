@@ -11,10 +11,10 @@ import java.util.Optional;
 
 @Repository
 public interface PositionRepository extends JpaRepository<Position, Long> {
-    Optional<Position> findByName(String name); // Точное совпадение
+    Optional<Position> findByName(String name); // exact match
 
     @Query("SELECT p FROM Position p WHERE p.name LIKE :prefix%")
     List<Position> findByNameWithPrefix(@Param("prefix") String prefix);
 
-    List<Position> findByNameContaining(String name); // Частичное совпадение
+    List<Position> findByNameContaining(String name); // partial match
 }
