@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+<div th:fragment="content">
+    <h1 class="text-center pb-5">Users list</h1>
+    <a href="/users/create" class="mb-5">Create new user</a>
+
+    <div class="row my-3">
+        <div class="col-md-4 me-5 my-5">
+            <form th:action="@{/users/goToAddPositions}" method="get">
+                <label for="userId" class="form-label">Add Positions to the User:</label>
+                <div class="input-group">
+                    <input type="text" id="userId" name="userId" class="form-control" placeholder="User ID">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-4 me-5 my-5">
+            <form th:action="@{/users/searchById}" method="get">
+                <label for="searchId" class="form-label">Search by ID:</label>
+                <div class="input-group">
+                    <input type="text" id="searchId" name="id" class="form-control">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+            <form th:action="@{/users/searchBySurname}" method="get">
+                <label for="searchSurname" class="form-label">Search by Surname:</label>
+                <div class="input-group">
+                    <input type="text" id="searchSurname" name="surname" class="form-control">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${message}" class="alert alert-success" role="alert">
+        <span th:text="${message}"></span>
+    </div>
+
+    <div th:if="${warning}" class="alert alert-warning" role="alert">
+        <span th:text="${warning}"></span>
+    </div>
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+
+    <!-- Searching by ID, results -->
+    <div th:if="${foundUser}" class="card mt-3">
+        <div class="card-header">Found User Details</div>
+        <div class="card-body">
+            <p><strong>ID:</strong> <span th:text="${foundUser.id}"></span></p>
+            <p><strong>Surname:</strong> <span th:text="${foundUser.surname}"></span></p>
+            <p><strong>Name:</strong> <span th:text="${foundUser.name}"></span></p>
+            <p><strong>Birth Date:</strong> <span th:text="${foundUser.dateOfBirth}"></span></p>
+            <p><strong>Person ID:</strong> <span th:text="${foundUser.personId}"></span></p>
+            <p><strong>UUID:</strong> <span th:text="${foundUser.uuid}"></span></p>
+            <p><strong>Positions:</strong></p>
+            <ul>
+                <li th:each="position : ${foundUser.positions}" th:text="${position.name}"></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Searching by Surname, results -->
+    <div th:if="${foundUsers != null and not #lists.isEmpty(foundUsers)}" class="card mt-3">
+        <div class="card-header">Found Users Details</div>
+        <div class="card-body">
+            <div th:each="user : ${foundUsers}" class="mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>ID:</strong> <span th:text="${user.id}"></span></p>
+                        <p><strong>Surname:</strong> <span th:text="${user.surname}"></span></p>
+                        <p><strong>Name:</strong> <span th:text="${user.name}"></span></p>
+                        <p><strong>Birth Date:</strong> <span th:text="${user.dateOfBirth}"></span></p>
+                        <p><strong>Person ID:</strong> <span th:text="${user.personId}"></span></p>
+                        <p><strong>UUID:</strong> <span th:text="${user.uuid}"></span></p>
+                        <p><strong>Positions:</strong></p>
+                        <ul>
+                            <li th:each="position : ${user.positions}" th:text="${position.name}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-striped my-5">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">User ID</th>
+            <th scope="col">Surname</th>
+            <th scope="col">Name</th>
+            <th scope="col">Person ID</th>
+            <th scope="col">Birth date</th>
+            <th scope="col">Positions</th>
+            <th scope="col">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user, stat : ${users}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.surname}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.personId}"></td>
+            <td th:text="${user.birthDate}"></td>
+            <td>
+                <ul>
+                    <li th:each="position : ${user.positions}" th:text="${position.name}"></li>
+                </ul>
+            </td>
+            <td>
+                <a th:href="@{'/users/searchById?id=' + ${user.id}}" class="btn btn-sm btn-primary">Detail</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
