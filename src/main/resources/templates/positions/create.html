@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Position</title>
+</head>
+<body>
+<div th:fragment="content">
+    <h1>Create Position</h1>
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form action="#" th:action="@{/positions/create}" th:object="${createPositionDto}" method="post">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" class="form-control" th:field="*{name}"/>
+
+        <button type="submit" class="btn btn-primary my-3">Submit</button>
+    </form>
+</div>
+</body>
+</html>
