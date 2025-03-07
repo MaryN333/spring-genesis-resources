@@ -284,4 +284,11 @@ public class UserService {
                             + user.getId() + " - " + user.getName() + " " + user.getSurname());
         }
     }
+
+    public List<SuperDetailedUserDto> getSuperDetailedUsersBySurname(String surname) {
+        List<User> users = userRepository.findBySurnameStartingWithIgnoreCase(surname);
+        return users.stream()
+                .map(user -> getSuperDetailedUserById(user.getId()))
+                .collect(Collectors.toList());
+    }
 }
