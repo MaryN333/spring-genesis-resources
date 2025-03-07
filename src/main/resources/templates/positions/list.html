@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+<div th:fragment="content">
+    <h1 class="text-center py-4">Positions List</h1>
+    <a href="/positions/create">Create new position</a>
+
+    <div class="row my-3">
+        <div class="col-md-4 me-5">
+            <form th:action="@{/positions/searchById}" method="get">
+                <label for="searchId" class="form-label">Search by ID:</label>
+                <div class="input-group">
+                    <input type="text" id="searchId" name="id" class="form-control">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4 ms-5">
+            <form th:action="@{/positions/searchByName}" method="get">
+                <label for="searchName" class="form-label">Search by position name:</label>
+                <div class="input-group">
+                    <input type="text" id="searchName" name="name" class="form-control">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+
+    <!-- Searching by position ID, results -->
+    <div th:if="${foundPosition}" class="card mt-3">
+        <div class="card-header">Found Position Details</div>
+        <div class="card-body">
+            <p><strong>ID:</strong> <span th:text="${foundPosition.id}"></span></p>
+            <p><strong>Name:</strong> <span th:text="${foundPosition.name}"></span></p>
+            <p><strong>Users:</strong></p>
+            <ul>
+                <li th:each="user : ${foundPosition.users}"
+                    th:text="${user.surname + ' ' + user.name + ', ' + user.dateOfBirth}"></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Searching by position name, results -->
+    <div th:if="${foundPositions != null and not #lists.isEmpty(foundPositions)}" class="card mt-3">
+        <div class="card-header">Found Positions Details</div>
+        <div class="card-body">
+            <div th:each="position : ${foundPositions}" class="mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <p><strong>ID:</strong> <span th:text="${position.id}"></span></p>
+                        <p><strong>Name:</strong> <span th:text="${position.name}"></span></p>
+                        <p><strong>Users:</strong></p>
+                        <ul>
+                            <li th:each="user : ${position.users}"
+                                th:text="${user.surname + ' ' + user.name + ', ' + user.dateOfBirth}"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <table class="table table-striped my-5">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Position ID</th>
+            <th scope="col">Position</th>
+            <th scope="col">Users</th>
+            <th scope="col">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="position, stat : ${positions}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${position.id}">Position ID</td>
+            <td th:text="${position.name}">Position</td>
+            <td>
+                <ul>
+                    <li th:each="user : ${position.users}"
+                        th:text="${user.surname + ' ' + user.name + ', ' + user.birthDate}"></li>
+                </ul>
+            </td>
+            <td>
+                <a th:href="@{'/positions/searchById?id=' + ${position.id}}" class="btn btn-sm btn-primary">Detail</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
