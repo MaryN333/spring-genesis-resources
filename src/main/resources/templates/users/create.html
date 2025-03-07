@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create user</title>
+</head>
+<body>
+<div th:fragment="content">
+    <h1>Create User</h1>
+
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+
+    <form action="#" th:action="@{/users/create}" th:object="${createUserDto}" method="post">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" id="name" class="form-control" th:field="*{name}" />
+
+        <label for="surname" class="form-label">Surname:</label>
+        <input type="text" id="surname" class="form-control" th:field="*{surname}" />
+
+        <label for="birthDate" class="form-label">Date of birth:</label>
+        <input type="date" id="birthDate" class="form-control" placeholder="yyyy-mm-dd" th:field="*{dateOfBirth}" />
+
+        <label for="personId" class="form-label">Person ID:</label>
+        <input type="text" id="personId" class="form-control" th:field="*{personId}" />
+
+        <label for="positions" class="form-label">Positions:</label>
+        <select id="positions" class="form-control" th:field="*{positions}" multiple>
+            <option th:each="position : ${positions}" th:value="${position.id}" th:text="${position.name}"></option>
+        </select>
+
+        <button type="submit" class="btn btn-primary my-3">Submit</button>
+    </form>
+</div>
+</body>
+</html>
