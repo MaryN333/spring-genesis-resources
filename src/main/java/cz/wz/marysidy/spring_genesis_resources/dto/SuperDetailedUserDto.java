@@ -6,7 +6,7 @@ import cz.wz.marysidy.spring_genesis_resources.model.Position;
 import java.time.LocalDate;
 import java.util.Set;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)    // kde je null, nebude se zobr.
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SuperDetailedUserDto extends DetailedUserDto {
     private Set<Position> positions;
     private Set<Long> missingPositions;

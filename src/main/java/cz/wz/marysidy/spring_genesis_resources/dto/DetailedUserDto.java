@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
 
-@JsonInclude(JsonInclude.Include.NON_NULL) // где null, не будет отображаться в Postman эти поля
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class DetailedUserDto extends ShortUserDto {
     private String personId;
     private String uuid;
