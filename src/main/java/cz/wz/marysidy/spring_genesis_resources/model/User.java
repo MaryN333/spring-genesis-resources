@@ -25,7 +25,7 @@ public class User extends BaseEntity{
 
     @NotNull
     @Column(name = "birth_date")
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
     @ManyToMany
@@ -103,7 +103,6 @@ public class User extends BaseEntity{
         if (!(o instanceof User)) return false;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        // je to bezpecne, primy pristup k personID, proto ze je final
         return personId.equals(user.personId);
     }
 
