@@ -177,12 +177,14 @@ class PositionServiceTest {
         DetailedPositionDto expected = positionService.updatePosition(dto);
         assertEquals("newName", expected.getName());
         verify(positionRepository).findById(1L);
+        verify(positionRepository).save(any(Position.class));
     }
 
     @Test
     void testDeletePosition_WhenNoUsers() {
         when(positionRepository.findById(1L)).thenReturn(Optional.of(position));
         positionService.deletePosition(1L);
+        verify(positionRepository).findById(1L);
         verify(positionRepository).delete(position);
     }
 
