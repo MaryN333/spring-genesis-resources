@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<div th:fragment="content">
+    <h1>Projekt: Zavěrečný projekt: Genesis Resources</h1>
+    <h2>Popis situace</h2>
+    <p class="text-justify">V postapokalyptickém světě, který sužovala zkáza a chaos, existovalo jedno
+        poslední místo naděje. Bylo to tajemné a těžko přístupné místo, známé jen jako <strong>Oáza</strong>.
+        V této Oáze bylo možné najít životně důležité suroviny, které zbyly po zničení zbytku světa.</p>
+    <p class="text-justify">Oáza byla ukrytá v hlubokém údolí, obklopená neproniknutelnými lesy a horami.
+        Přeživší si o ní vyprávěli jako o magickém místě, kde pramenila <strong>voda</strong> a <strong>půda</strong>
+        byla plodná. Jen ti nejstatečnější jedinci se odhodlali vydat na nebezpečnou cestu k Oáze.</p>
+    <p class="text-justify">Hlavní postavou byl <strong>Jack</strong>, mladý a statečný dobrodruh, který se
+        rozhodl vydat na cestu ke ztracené Oáze. Věděl, že na těchto surovinách závisí přežití jeho komunity
+        a celého lidského rodu. Sbalil si minimum věcí, nabil svou zbraň a vydal se na nebezpečnou cestu.</p>
+    <p class="text-justify">Cesta k Oáze byla plná pastí, mutantů a dalších nebezpečí. Jack se musel vyrovnat
+        se samotou, hladem a utrpením. Každý den byl bojem o přežití, ale jeho touha najít Oázu ho posouvala vpřed.</p>
+    <p class="text-justify">Po mnoha týdnech putování přes nekonečné pouště a zdevastovaná města Jack konečně spatřil
+        <strong>zelenou oázu v dálce</strong>. Jeho srdce zaplesalo radostí, ale nebezpečí ještě nebylo zažehnáno.
+        Musel překonat poslední překážku - stráže, které střežily vstup do Oázy.</p>
+    <p class="text-justify">S použitím svých dovedností a statečnosti se Jackovi podařilo přesvědčit stráže, že
+        je hodný přístupu. Otevřely se brány a Jack vstoupil do Oázy.</p>
+    <p class="text-justify">V Oáze byl přivítán vřelými lidmi, kteří si vážili jeho statečnosti. Zde bylo vše,
+        co bylo potřeba pro obnovu lidské civilizace. Vytvořila se komunita, která začala znovu budovat a
+        plánovat budoucnost.</p>
+    <p class="text-justify">Jackova cesta ke ztracené Oáze se stala legendou, kterou vyprávěli další generace.
+        Byl symbolem naděje a odhodlání v postapokalyptickém světě.</p>
+    <p class="text-justify">Poté, co Jack úspěšně překonal všechny překážky a dostal se do Oázy, pochopil,
+        že nalezené suroviny jsou klíčové pro obnovu lidské civilizace. V jeho srdci se rodila myšlenka, že
+        by mohl založit společnost, která by tyto suroviny distribuovala a zajistila jejich
+        spravedlivé rozdělení mezi přeživší komunity.</p>
+    <p class="text-justify">Jack se seznámil s dalšími obyvateli Oázy, kteří sdíleli jeho touhu po obnově a
+        záchraně lidského rodu. Společně se rozhodli zrealizovat jeho vizi a založit společnost nazvanou
+        <strong>Genesis Resources</strong>.</p>
+    <p class="text-justify">Genesis Resources měla za úkol sbírat, zpracovávat a distribuovat životně
+        důležité suroviny ze záhadné Oázy do postapokalyptického světa. Jack se stal vůdcem společnosti
+        a se svým týmem odvážných průzkumníků a odborníků zajistil potřebné suroviny.</p>
+    <p class="text-justify">Společnost Genesis Resources se rychle rozrostla a stala se klíčovým hráčem v
+        postapokalyptickém světě. Jejich prioritou bylo zajistit, aby suroviny <strong>nebyly
+            zneužívány</strong> nebo <strong>monopolizovány</strong> jednotlivci nebo skupinami.
+        Proto byli důslední ve svém závazku dodávat suroviny spravedlivě a rovnoměrně mezi
+        přeživší komunity.</p>
+    <p class="text-justify">Jack a jeho společnost usilovali o obnovu lidské civilizace prostřednictvím
+        rozvoje a výstavby. Genesis Resources investovala do výzkumu a vývoje nových technologií, které
+        by pomohly přeživším komunitám vytvářet <strong>udržitelné a obnovitelné zdroje</strong>.</p>
+    <p class="text-justify">Jackova vize oživila naději mezi lidmi, kteří se nacházeli na pokraji zoufalství.
+        Genesis Resources se stala symbolem naděje a spolupráce, která ukazovala, že i v temných časech
+        je možné najít způsob, jak se znovu postavit na nohy.</p>
+    <p class="text-justify">Díky úsilí Jacka a jeho společnosti začalo lidské společenství postupně obnovovat
+        svou sílu a znovu budovat civilizaci na základě spravedlnosti, spolupráce a udržitelnosti. Genesis
+        Resources se stala klíčovým prvkem přežití a rozvoje postapokalyptického světa.</p>
+
+    <h3><strong>Zadání</strong></h3>
+    <p>Obrací se na tebe správní rada společnosti <strong>Genesis Resources</strong>. Tvým úkolem
+        je vytvořit pro ni registrační systém, aby mohla suroviny distribuovat opravdu spravedlivě.</p>
+
+    <h3>Naše zadání projektu:</h3>
+    <ol>
+        <li>aplikace bude obsahovat REST rozhraní</li>
+        <li>data se budou ukládat do databáze</li>
+        <li>je požadované správné rozdělení kódu (controller, service atd.)</li>
+        <li>důležité je také dbát na čistotu kódu</li>
+        <li>odevzdaní musí obsahovat export z Postmana (kterým je testované API)</li>
+        <li>odevzdání musí ještě obsahovat SQL příkazy, kterými byla vygenerována databáze</li>
+    </ol>
+
+    <h3 class="mt-5">POŽADAVKY NA API</h3>
+    <h3><strong>Požadované operace</strong></h3>
+    <ol>
+        <li>založení nového uživatele
+            <ul>
+                <li>Založit nového uživatele je možné přes api: <span class="text-primary">POST api/v1/users</span></li>
+                <li>Informace o novém uživateli budou předány skrz objekt
+                    <!--            <p><code class="language-json">{ name: string, surname: string, personID: string(12) }</code></p>-->
+                    <pre class="code-block my-2">{ name: string, surname: string, personID: string(12) }</pre>
+                </li>
+                <li class="text-justify"><span class="text-primary">personID</span> je jedinečné a je generované
+                    pro každého obyvatele. Můžete si představit, že je to něco jako rodné číslo, které je také
+                    více méně jedinečné. <span class="text-primary">PersonID</span> je do našeho systému poskytováno
+                    skrz nějakou certifikační autoritu. My si to nasimulujeme tak, že v našem projektu vytvoříme
+                    soubor (například <span class="text-primary">dataPersonId.txt</span> a do něho zapíšeme tyto
+                    hodnoty:
+                    <div class="code-block my-2">
+                        jXa4g3H7oPq2<br>yB9fR6tK0wLm<br>cN1vZ8pE5sYx<br>tQdG2kP3mJfB<br>iM5sO6zXcW7v<br>rU8nA9eT2bYh<br>
+                        wV6eH1fK7qZj<br>sL4gN9dC3bXz<br>kR0aZ7vW2nDl<br>eI1oY6tQ9dKj<br>gT4cR7wS0lVx<br>xF9hD2yJ3sWv<br>
+                        hM5bZ8nK4aVf<br>qE3lY6uT0vKd<br>bG2zC7jR9xVp<br>vB1fX4rH7iNt<br>aO8kP3mZ6dIw<br>dW9pL2eU1yNc<br>
+                        nS7tJ0qR5wGh<br>mY6sT1jA3cLz
+                    </div>
+                </li>
+                <li>Ještě je nutné říci, že v databázi musí být <span class="text-primary">personID</span> jedinečné.
+                    Tz. že při každém zápisu musíme nějakým způsobem zkontrolovat, zda <span class="text-primary">personID</span>
+                    nebylo přiřazeno již jinému záznamu.
+                </li>
+                <li><strong>UUID - Generování</strong>
+                    <p>Pro každý nový záznam musí být vygenerovaný ještě UUID, což bude další jedinečný identifikátor
+                        uživatele. Na vygenerování můžeš použít například následující knihovnu
+                        (<a href="https://www.baeldung.com/java-uuid">https://www.baeldung.com/java-uuid</a>).
+                    </p>
+                </li>
+            </ul>
+        </li>
+
+        <li>informace o uživateli
+            <ul>
+                <li>dostat informace o jednom uživateli je možné přes api:
+                    <span class="text-primary">GET api/v1/users/{ID}</span>
+                    <p>Tento request vrátí následující objekt:</p>
+                    <p class="code-block my-2">{ id: int, name: string, surname: string }</p>
+                </li>
+                <li>ještě existuje varianta <span class="text-primary">api/v1/users/{ID}?detail=true</span>
+                    <p>Kdy request vrátí rozšířený objekt:</p>
+                    <p class="code-block my-2">{ id: int, name: string, surname: string, personID: string , uuid: string
+                        }</p>
+                </li>
+            </ul>
+        </li>
+
+        <li>informace o všech uživatelích
+            <ul>
+                <li>dostat informace o všech uživatelích je možné přes api: <span
+                        class="text-primary">GET api/v1/users</span>
+                    <p>Tento request vrátí následující objekt:</p>
+                    <p class="code-block my-2">List &lt;{id: int, name: string, surname: string }&gt; </p>
+                </li>
+                <li>ještě existuje varianta <span class="text-primary">api/v1/users?detail=true</span>
+                    <p>Kdy request vrátí rozšířený objekt:</p>
+                    <p class="code-block my-2">{id: int, name: string, surname: string, personID: string, uuid: string
+                        }</p>
+                </li>
+            </ul>
+        </li>
+
+        <li>upravit informace o uživateli
+            <ul>
+                <li>upravit uživatele je možné přes api: <span class="text-primary">PUT api/v1/users</span>
+                    <p>Informace o novém uživateli budou předány skrz objekt:</p>
+                    <p class="code-block my-2">{id: int, name: string, surname: string }</p>
+                    <p>Z toho tedy je jasné, že je možné upravit pouze name a surname</p>
+            </ul>
+        </li>
+
+        <li>smazat uživatele
+            <ul>
+                <li>ještě existuje varianta <span class="text-primary">DELETE api/v1/users/{ID}</span>
+            </ul>
+        </li>
+    </ol>
+
+    <h3 class="mt-5">POŽADAVKY NA DATABÁZI</h3>
+    <h3><strong>Struktura</strong></h3>
+    <table class="table table-bordered custom-table">
+        <thead>
+        <tr>
+            <th scope="col">Jméno sloupce</th>
+            <th scope="col">Typ</th>
+            <th scope="col">Další Info</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>ID</td>
+            <td>Long</td>
+            <td>PrimaryKey, Unique, NotNull, Autoincrement</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>Varchar</td>
+            <td>NotNull</td>
+        </tr>
+        <tr>
+            <td>Surname</td>
+            <td>Varchar</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PersonID</td>
+            <td>Varchar</td>
+            <td>Unique, NotNull</td>
+        </tr>
+        <tr>
+            <td>Uuid</td>
+            <td>Varchar</td>
+            <td>Unique, NotNull</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h3 class="mt-5">Doplňující možnosti</h3>
+    <p>Pokud chceš udělat něco navíc :), můžeš si vybrat z následujících možností:</p>
+    <ul class="mb-5">
+        <li><strong>logovací</strong> framework</li>
+        <li>front-end</li>
+        <li>JUnit</li>
+        <li>vytvořit dva profily</li>
+    </ul>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+
+.text-justify {
+    text-align: justify;
+}
+
+.code-block {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    max-width: 70%;
+}
+.custom-table {
+  max-width: 70%;
+}
